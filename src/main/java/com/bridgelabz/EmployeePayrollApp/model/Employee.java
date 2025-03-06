@@ -1,8 +1,7 @@
 package com.bridgelabz.EmployeePayrollApp.model;
 
+import com.bridgelabz.EmployeePayrollApp.dto.EmployeeDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -16,9 +15,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name cannot be blank")
     private String name;
-
-    @Min(value = 1000, message = "Salary must be at least 1000")
     private int salary;
+
+    // Constructor to map DTO to Model
+    public Employee(EmployeeDTO employeeDTO) {
+        this.name = employeeDTO.getName();
+        this.salary = employeeDTO.getSalary();
+    }
 }
