@@ -2,11 +2,13 @@ package com.bridgelabz.EmployeePayrollApp.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data  // Auto-generates getters, setters, toString, equals, and hashCode
+@NoArgsConstructor  // Generates a no-args constructor
+@AllArgsConstructor  // Generates a constructor with all arguments
 public class EmployeeDTO {
 
     @NotBlank(message = "Name cannot be blank")
