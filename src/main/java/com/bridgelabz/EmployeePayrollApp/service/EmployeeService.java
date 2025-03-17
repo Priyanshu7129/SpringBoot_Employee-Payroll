@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j  // Enables logging
+@Slf4j
 @Service
 public class EmployeeService {
 
@@ -18,7 +18,7 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     public List<Employee> getAllEmployees() {
-        log.info("Fetching all employees");
+        log.debug("Fetching all employees (Debug Level)");  // Only visible in Dev
         return employeeRepository.findAll();
     }
 
@@ -43,15 +43,15 @@ public class EmployeeService {
             return employeeRepository.save(employee);
         }
         log.warn("Employee with ID {} not found", id);
-        return null; // Employee not found
+        return null;
     }
 
     public boolean deleteEmployee(Long id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-            return true;  // Return true if employee is deleted
+        if (employeeRepository.existsById(id)) {  // Check if employee exists
+            employeeRepository.deleteById(id);  // Delete the employee
+            return true;  // Return true if deleted
         }
-        return false;  // Return false if employee does not exist
+        return false;  // Return false if employee doesn't exist
     }
 
 }
